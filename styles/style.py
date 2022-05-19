@@ -13,6 +13,14 @@ STYLE = {
 
 PACK = {
     "side": tk.TOP,
+    "fill": tk.X,
+    "expand": True,
+    "padx": 22,
+    "pady": 11
+}
+
+PACK2 = {
+    "side": tk.LEFT,
     "fill": tk.BOTH,
     "expand": True,
     "padx": 22,
