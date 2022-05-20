@@ -2,6 +2,7 @@ import tkinter as tk
 from Controller import Controller
 from screens.HomeScreen import HomeScreen
 from screens.AddTestScreen import AddTestScreen
+from screens.UpdateTestScreen import UpdateTestScreen
 from styles import style
 
 
@@ -24,7 +25,7 @@ class Manager(tk.Tk):
         self.container.grid_columnconfigure(0,weight = 1)
         self.container.grid_rowconfigure(0,weight = 1)
         self.frames = {}
-        screens = (HomeScreen, AddTestScreen ) 
+        screens = (HomeScreen, AddTestScreen, UpdateTestScreen, ) 
         
         for F in screens:
             frame = F(self.container, self)
@@ -41,3 +42,16 @@ class Manager(tk.Tk):
 
     def home_to_create(self):
         self.show_frame(AddTestScreen)
+        
+    def home_to_update(self):
+        new_options = self.get_test_names()
+        self.frames[UpdateTestScreen].options.update_options(new_options)
+        self.show_frame(UpdateTestScreen)
+        
+#Aquie empiezan los metodos de las bases de datos
+
+    def get_test_names(self):
+        return self.controller.get_test_names()
+    
+    def add_test_questions(self, _test_name, _question_text, _question_choices, _correct_choice):
+        self.controller.add_test_questions(_test_name, _question_text, _question_choices, _correct_choice)

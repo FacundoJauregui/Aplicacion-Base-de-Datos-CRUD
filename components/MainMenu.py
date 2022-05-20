@@ -26,7 +26,7 @@ class MainMenu(tk.Frame):
         tk.Button(
             self,
             text = "Editar Test",
-            command = lambda: print("Has hecho click en Editar Test"),
+            command = lambda: self.manager.home_to_update(),
             **style.STYLE,
             relief = tk.RAISED,
             activebackground = style.BACKGROUND,

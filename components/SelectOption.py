@@ -30,6 +30,6 @@ class SelectOption(tk.Frame):
         
         for option in new_options: #Y iteramos el nuevo menu desplegable aniadiendo opcion por opcion
             menu.add_command(
-                Label = option,
+                label = option,
                 command = lambda value = option: self.selected.set(value)
             )
