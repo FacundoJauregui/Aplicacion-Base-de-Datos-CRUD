@@ -11,6 +11,19 @@ class MainMenu(tk.Frame):
         self.init_widgets()
         
     def init_widgets(self):
+        
+        tk.Button(
+            self,
+            text = "Hacer Test",
+            command = lambda: self.manager.home_to_select(),
+            **style.STYLE,
+            relief = tk.RAISED,
+            activebackground = style.BACKGROUND,
+            activeforeground = style.TEXT
+        ).pack(
+            **style.PACK
+        )
+        
         tk.Button(
             self,
             text = "Crear Test",
@@ -38,7 +51,7 @@ class MainMenu(tk.Frame):
         tk.Button(
             self,
             text = "Eliminar Test",
-            command = lambda: print("Has hecho click en Elimnar Test"),
+            command = lambda: self.manager.home_to_delete(),
             **style.STYLE,
             relief = tk.RAISED,
             activebackground = style.BACKGROUND,

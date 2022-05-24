@@ -1,9 +1,11 @@
 import tkinter as tk   
+import tkinter.messagebox
 from styles import style
 from components.MainMenu import MainMenu
 from components.SelectOption import SelectOption
 
-class SelectTestScreen(tk.Frame):
+
+class DeleteTestScreen(tk.Frame):
     def __init__(self, parent, manager):
         super().__init__(parent)
         self.manager = manager
@@ -14,7 +16,7 @@ class SelectTestScreen(tk.Frame):
     def init_widgets(self):
         tk.Label(
             self,
-            text = "Seleccione el test que quieras realizar",
+            text = "Seleccione el test que quieras eliminar",
             justify = tk.CENTER,
             **style.STYLE
         ).pack(
@@ -33,12 +35,12 @@ class SelectTestScreen(tk.Frame):
         
         tk.Button(
             self,
-            text = "Empezar Test",
+            text = "Eliminar Test",
             relief = tk.RAISED,
             activebackground = style.BACKGROUND,
             activeforeground = style.TEXT,
             **style.STYLE,
-            command = lambda: self.manager.select_to_execute()
+            command = lambda: self.delete_test()
         ).pack(**style.PACK)
         
         MainMenu(
@@ -48,3 +50,18 @@ class SelectTestScreen(tk.Frame):
             **style.PACK
         )
         
+    def delete_test(self):
+        _test_name = self.options.selected.get()
+        tk.messagebox.showinfo(
+            title = "WARNING",
+            message = f"Seguro que quieres eliminar {_test_name}"
+        )
+        
+        self.manager.delete_test(self.options.selected.get())
+        
+        tk.messagebox.showinfo(
+            title = "WARNING",
+            message = f"El test {_test_name} a sido eliminado"
+        )
+        test_names = self.manager.get_test_names()
+        self.options.update_options(test_names)
